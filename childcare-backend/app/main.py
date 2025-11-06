@@ -24,8 +24,16 @@ from app.models import (
     billing as billing_model
 )  # noqa: F401
 
-# Create tables (development only; in production, use Alembic)
-Base.metadata.create_all(bind=engine)
+# Create tables on startup (safe even in production)
+@app.on_event("startup")
+def on_startup():
+    print("🧱 Creating tables if not exist...")
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("✅ Tables verified/created successfully.")
+    except Exception as e:
+        print("❌ Table creation failed:", e)
+
 
 # Initialize FastAPI app
 app = FastAPI(title="Child Care Center Management System - API")
