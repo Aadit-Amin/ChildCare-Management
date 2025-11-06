@@ -1,7 +1,13 @@
 import axios from "axios";
 
-// ---------------- Base API ----------------
-const API_BASE = "https://childcare-management.onrender.com";
+// ---------------- Dynamic Base API ----------------
+const API_BASE =
+  import.meta.env.VITE_API_BASE_URL ||
+  (window.location.hostname === "localhost"
+    ? "http://127.0.0.1:8000"
+    : "https://childcare-management.onrender.com");
+
+console.log("✅ Using API base:", API_BASE);
 
 const api = axios.create({
   baseURL: API_BASE,
