@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.config import settings
 
-# Import routers explicitly from app.routers
+# Import routers explicitly
 from app.routers.auth import router as auth_router
 from app.routers.children import router as children_router
 from app.routers.staff import router as staff_router
@@ -24,10 +24,25 @@ from app.models import (
     billing as billing_model
 )  # noqa: F401
 
-# Initialize FastAPI app
+# ✅ Initialize FastAPI app
 app = FastAPI(title="Child Care Center Management System - API")
 
-# Create tables on startup (safe even in production)
+# ✅ Enable CORS for frontend (MUST come right after app creation)
+# Include both Render env var and explicit allowed URLs
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        settings.FRONTEND_URL,
+        "https://child-care-management.vercel.app",  # your deployed frontend
+        "http://localhost:5173",  # local dev
+        "http://localhost:3000",  # CRA dev
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ✅ Create tables on startup
 @app.on_event("startup")
 def on_startup():
     print("🧱 Creating tables if not exist...")
@@ -37,17 +52,7 @@ def on_startup():
     except Exception as e:
         print("❌ Table creation failed:", e)
 
-
-# Enable CORS for frontend
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Include routers
+# ✅ Include routers
 app.include_router(auth_router)
 app.include_router(children_router)
 app.include_router(staff_router)
@@ -55,7 +60,6 @@ app.include_router(attendance_router)
 app.include_router(health_record_router)
 app.include_router(activities_router)
 app.include_router(billing_router)
-
 
 @app.get("/")
 def read_root():
