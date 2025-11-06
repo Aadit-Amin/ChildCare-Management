@@ -1,0 +1,99 @@
+{
+  "info": {
+    "name": "Child Care Center API - Health Records, Activities, Billing CRUD",
+    "_postman_id": "childcare-additional-crud",
+    "description": "Postman collection for Health Records, Activities, and Billing CRUD operations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Records",
+      "item": [
+        {
+          "name": "Create Health Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{access_token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"child_id\": 1,\n  \"description\": \"Regular Check-up\",\n  \"doctor_name\": \"Dr. Smith\",\n  \"record_date\": \"2025-10-15\"\n}"
+            },
+            "url": {"raw":"http://127.0.0.1:8000/health-records/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health-records",""]}
+          }
+        },
+        {
+          "name": "List Health Records",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/health-records/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health-records",""]}}
+        },
+        {
+          "name": "Get Health Record",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/health-records/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health-records","1"]}}
+        },
+        {
+          "name": "Update Health Record",
+          "request": {"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{access_token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"child_id\": 1,\n  \"description\": \"Updated Check-up\",\n  \"doctor_name\": \"Dr. Smith\",\n  \"record_date\": \"2025-10-15\"\n}"},"url":{"raw":"http://127.0.0.1:8000/health-records/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health-records","1"]}}
+        },
+        {
+          "name": "Delete Health Record",
+          "request": {"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/health-records/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health-records","1"]}}
+        }
+      ]
+    },
+    {
+      "name": "Activities",
+      "item": [
+        {
+          "name": "Create Activity",
+          "request": {"method":"POST","header":[{"key":"Authorization","value":"Bearer {{access_token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"title\": \"Morning Yoga\",\n  \"description\": \"Yoga session for kids\",\n  \"scheduled_date\": \"2025-10-18\",\n  \"start_time\": \"08:00:00\",\n  \"end_time\": \"09:00:00\",\n  \"assigned_staff_id\": 1\n}"},"url":{"raw":"http://127.0.0.1:8000/activities/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities",""]}}
+        },
+        {
+          "name": "List Activities",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/activities/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities",""]}}
+        },
+        {
+          "name": "Get Activity",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/activities/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities","1"]}}
+        },
+        {
+          "name": "Update Activity",
+          "request": {"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{access_token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"title\": \"Morning Yoga Updated\",\n  \"description\": \"Updated Yoga session\",\n  \"scheduled_date\": \"2025-10-18\",\n  \"start_time\": \"08:30:00\",\n  \"end_time\": \"09:30:00\",\n  \"assigned_staff_id\": 1\n}"},"url":{"raw":"http://127.0.0.1:8000/activities/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities","1"]}}
+        },
+        {
+          "name": "Delete Activity",
+          "request": {"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/activities/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities","1"]}}
+        }
+      ]
+    },
+    {
+      "name": "Billing",
+      "item": [
+        {
+          "name": "Create Billing",
+          "request": {"method":"POST","header":[{"key":"Authorization","value":"Bearer {{access_token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"child_id\": 1,\n  \"amount\": 5000.00,\n  \"status\": \"Unpaid\",\n  \"issued_date\": \"2025-10-15\",\n  \"due_date\": \"2025-10-30\",\n  \"notes\": \"Monthly fee\"\n}"},"url":{"raw":"http://127.0.0.1:8000/billing/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing",""]}}
+        },
+        {
+          "name": "List Billing",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/billing/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing",""]}}
+        },
+        {
+          "name": "Get Billing",
+          "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/billing/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing","1"]}}
+        },
+        {
+          "name": "Update Billing",
+          "request": {"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{access_token}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"child_id\": 1,\n  \"amount\": 5500.00,\n  \"status\": \"Paid\",\n  \"issued_date\": \"2025-10-15\",\n  \"due_date\": \"2025-10-30\",\n  \"notes\": \"Updated monthly fee\"\n}"},"url":{"raw":"http://127.0.0.1:8000/billing/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing","1"]}}
+        },
+        {
+          "name": "Delete Billing",
+          "request": {"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],"url":{"raw":"http://127.0.0.1:8000/billing/1","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing","1"]}}
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "access_token", "value": ""}
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "info": {
+    "name": "Childcare Backend API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "Postman collection for Childcare Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@childcare.com\",\n  \"password\": \"password123\",\n  \"role\": \"staff\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["auth", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john@childcare.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Staff",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": 2,\n  \"contact\": \"123456789\",\n  \"position\": \"Teacher\",\n  \"assigned_room\": \"Room A\",\n  \"hire_date\": \"2025-10-14\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/staff/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["staff"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Staff",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/staff/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["staff"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Child",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alice\",\n  \"dob\": \"2021-05-20\",\n  \"gender\": \"Female\",\n  \"parent_name\": \"Jane Doe\",\n  \"parent_contact\": \"987654321\",\n  \"address\": \"123 Main St\",\n  \"allergies\": \"Peanuts\",\n  \"medical_info\": \"None\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/children/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["children"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Children",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/children/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["children"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "access_token",
+      "value": ""
+    }
+  ]
+}

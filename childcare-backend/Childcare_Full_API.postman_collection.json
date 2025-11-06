@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Childcare Backend Full API",
+    "_postman_id": "full-childcare-api-001",
+    "description": "Complete Postman collection to test all endpoints for Childcare Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"admin\"\n}"
+        },
+        "url": {"raw":"http://127.0.0.1:8000/auth/register","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["auth","register"]}
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {"raw":"http://127.0.0.1:8000/auth/login","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["auth","login"]}
+      }
+    },
+    {
+      "name": "Create Staff",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key":"Content-Type","value":"application/json"},
+          {"key":"Authorization","value":"Bearer {{access_token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": 1,\n  \"contact\": \"1234567890\",\n  \"position\": \"Teacher\",\n  \"assigned_room\": \"Room A\",\n  \"hire_date\": \"2025-10-15\"\n}"
+        },
+        "url": {"raw":"http://127.0.0.1:8000/staff/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["staff"]}
+      }
+    },
+    {
+      "name": "List Staff",
+      "request": {
+        "method": "GET",
+        "header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],
+        "url":{"raw":"http://127.0.0.1:8000/staff/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["staff"]}
+      }
+    },
+    {
+      "name": "Create Child",
+      "request": {
+        "method": "POST",
+        "header":[
+          {"key":"Content-Type","value":"application/json"},
+          {"key":"Authorization","value":"Bearer {{access_token}}"}
+        ],
+        "body":{"mode":"raw","raw":"{\n  \"name\":\"John Doe\",\n  \"dob\":\"2020-05-15\",\n  \"gender\":\"Male\",\n  \"parent_name\":\"Jane Doe\",\n  \"parent_contact\":\"9876543210\",\n  \"address\":\"123 Street\",\n  \"allergies\":\"None\",\n  \"medical_info\":\"Healthy\",\n  \"photo_url\":\"http://example.com/photo.jpg\"\n}"},
+        "url":{"raw":"http://127.0.0.1:8000/children/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["children"]}
+      }
+    },
+    {
+      "name": "List Children",
+      "request":{
+        "method":"GET",
+        "header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],
+        "url":{"raw":"http://127.0.0.1:8000/children/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["children"]}
+      }
+    },
+    {
+      "name": "Create Attendance",
+      "request":{
+        "method":"POST",
+        "header":[
+          {"key":"Content-Type","value":"application/json"},
+          {"key":"Authorization","value":"Bearer {{access_token}}"}
+        ],
+        "body":{"mode":"raw","raw":"{\n  \"child_id\":1,\n  \"date\":\"2025-10-15\",\n  \"check_in\":\"08:30:00\",\n  \"check_out\":\"16:30:00\",\n  \"status\":\"Present\"\n}"},
+        "url":{"raw":"http://127.0.0.1:8000/attendance/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["attendance"]}
+      }
+    },
+    {
+      "name": "List Attendance",
+      "request":{
+        "method":"GET",
+        "header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],
+        "url":{"raw":"http://127.0.0.1:8000/attendance/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["attendance"]}
+      }
+    },
+    {
+      "name": "Create Health Record",
+      "request":{
+        "method":"POST",
+        "header":[
+          {"key":"Content-Type","value":"application/json"},
+          {"key":"Authorization","value":"Bearer {{access_token}}"}
+        ],
+        "body":{"mode":"raw","raw":"{\n  \"child_id\":1,\n  \"description\":\"Regular check-up\",\n  \"doctor_name\":\"Dr. Smith\",\n  \"record_date\":\"2025-10-15\"\n}"},
+        "url":{"raw":"http://127.0.0.1:8000/health_records/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health_records"]}
+      }
+    },
+    {
+      "name": "List Health Records",
+      "request":{
+        "method":"GET",
+        "header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],
+        "url":{"raw":"http://127.0.0.1:8000/health_records/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["health_records"]}
+      }
+    },
+    {
+      "name": "Create Activity",
+      "request":{
+        "method":"POST",
+        "header":[
+          {"key":"Content-Type","value":"application/json"},
+          {"key":"Authorization","value":"Bearer {{access_token}}"}
+        ],
+        "body":{"mode":"raw","raw":"{\n  \"title\":\"Art Class\",\n  \"description\":\"Painting and drawing\",\n  \"scheduled_date\":\"2025-10-16\",\n  \"start_time\":\"10:00:00\",\n  \"end_time\":\"11:00:00\",\n  \"assigned_staff_id\":1\n}"},
+        "url":{"raw":"http://127.0.0.1:8000/activities/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities"]}
+      }
+    },
+    {
+      "name": "List Activities",
+      "request":{
+        "method":"GET",
+        "header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],
+        "url":{"raw":"http://127.0.0.1:8000/activities/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["activities"]}
+      }
+    },
+    {
+      "name": "Create Billing",
+      "request":{
+        "method":"POST",
+        "header":[
+          {"key":"Content-Type","value":"application/json"},
+          {"key":"Authorization","value":"Bearer {{access_token}}"}
+        ],
+        "body":{"mode":"raw","raw":"{\n  \"child_id\":1,\n  \"amount\":100.00,\n  \"status\":\"Unpaid\",\n  \"issued_date\":\"2025-10-15\",\n  \"due_date\":\"2025-10-31\",\n  \"notes\":\"October fee\"\n}"},
+        "url":{"raw":"http://127.0.0.1:8000/billing/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing"]}
+      }
+    },
+    {
+      "name": "List Billing",
+      "request":{
+        "method":"GET",
+        "header":[{"key":"Authorization","value":"Bearer {{access_token}}"}],
+        "url":{"raw":"http://127.0.0.1:8000/billing/","protocol":"http","host":["127.0.0.1"],"port":"8000","path":["billing"]}
+      }
+    }
+  ],
+  "variable":[{"key":"access_token","value":""}]
+}
