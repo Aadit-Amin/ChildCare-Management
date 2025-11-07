@@ -33,10 +33,7 @@ export default function Login() {
       setToken(token);
 
       // 3️⃣ Fetch current user info
-      const res = await axios.get("http://127.0.0.1:8000/auth/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const user = res.data;
+      const user = await authApi.getMe();
 
       // 4️⃣ Save user info
       localStorage.setItem("user", JSON.stringify(user));
